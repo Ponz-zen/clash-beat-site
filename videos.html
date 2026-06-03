@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>映像 / アーカイブ — CLASH BEAT</title>
+<meta name="description" content="CLASH BEAT 全試合・ドキュメンタリー・ショート動画アーカイブ。横型20本+、縦型100本+。">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--black:#080808;--white:#f2f2f2;--blue:#00f0ff;--lime:#b8ff00;--red:#ff2424;--gray:#141414;--gray2:#1e1e1e;--gray3:#2a2a2a;--muted:#666;--muted2:#333;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Noto Sans JP',sans-serif;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;background:rgba(8,8,8,0.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.05);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.55rem;letter-spacing:0.1em;color:var(--white);text-decoration:none;}
+.nav-logo span{color:var(--blue);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:0.82rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--white);}
+.nav-links a.active{color:var(--blue);}
+.nav-cta{background:var(--blue);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.5rem 1.2rem;text-decoration:none;}
+.page-hero{padding-top:64px;height:46vh;min-height:320px;display:flex;align-items:flex-end;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 75% 30%,rgba(0,240,255,0.07) 0%,transparent 55%),radial-gradient(ellipse 40% 50% at 5% 85%,rgba(184,255,0,0.04) 0%,transparent 55%),var(--black);}
+.hero-lines{position:absolute;inset:0;opacity:0.02;background-image:linear-gradient(0deg,#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:48px 48px;}
+.hero-content{position:relative;z-index:2;padding:0 3rem 3rem;width:100%;}
+.breadcrumb{font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+.breadcrumb a{color:var(--blue);text-decoration:none;}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,6.5vw,6rem);line-height:0.92;letter-spacing:0.02em;}
+.page-title em{font-style:normal;color:var(--blue);}
+.page-subtitle{font-family:'Barlow Condensed',sans-serif;font-size:1rem;color:rgba(242,242,242,0.45);margin-top:0.7rem;}
+.count-bar{background:var(--gray);border-top:1px solid var(--muted2);padding:1.4rem 3rem;display:flex;align-items:center;gap:3rem;flex-wrap:wrap;}
+.count-item{display:flex;align-items:baseline;gap:0.5rem;}
+.count-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1;}
+.count-num.blue{color:var(--blue);}
+.count-num.lime{color:var(--lime);}
+.count-num.red{color:var(--red);}
+.count-label{font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);}
+.filter-bar{position:sticky;top:64px;z-index:80;background:rgba(8,8,8,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--muted2);padding:0 3rem;}
+.filter-bar-inner{display:flex;align-items:stretch;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.filter-bar-inner::-webkit-scrollbar{display:none;}
+.filter-group{display:flex;align-items:center;gap:0;border-right:1px solid var(--muted2);padding-right:1.5rem;margin-right:1.5rem;}
+.filter-group:last-child{border-right:none;padding-right:0;margin-right:0;}
+.filter-group-label{font-family:'Barlow Condensed',sans-serif;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted2);white-space:nowrap;padding-right:1rem;}
+.filter-chips{display:flex;gap:0.4rem;padding:0.75rem 0;flex-wrap:nowrap;}
+.chip{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;padding:0.3rem 0.85rem;border:1px solid var(--muted2);color:var(--muted);background:none;cursor:pointer;transition:all 0.18s;}
+.chip:hover{border-color:var(--white);color:var(--white);}
+.chip.active{border-color:var(--blue);color:var(--blue);background:rgba(0,240,255,0.06);}
+.layout-toggle{display:flex;gap:0;margin-left:auto;align-items:center;padding:0.75rem 0;}
+.layout-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:none;border:1px solid var(--muted2);cursor:pointer;color:var(--muted);transition:all 0.18s;}
+.layout-btn+.layout-btn{border-left:none;}
+.layout-btn.active{border-color:var(--blue);color:var(--blue);background:rgba(0,240,255,0.06);}
+.layout-btn svg{width:14px;height:14px;fill:currentColor;}
+.sec-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:0.6rem;margin-bottom:1.5rem;}
+.sec-label::before{content:'';display:block;width:18px;height:1px;background:var(--blue);}
+.sec-label.lime{color:var(--lime);}
+.sec-label.lime::before{background:var(--lime);}
+.sec-label.red{color:var(--red);}
+.sec-label.red::before{background:var(--red);}
+.category-nav{display:flex;gap:0;background:var(--gray2);border-bottom:1px solid var(--muted2);overflow-x:auto;scrollbar-width:none;}
+.category-nav::-webkit-scrollbar{display:none;}
+.cat-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;padding:0.9rem 1.6rem;background:none;border:none;color:var(--muted);cursor:pointer;transition:color 0.2s;border-bottom:2px solid transparent;margin-bottom:-1px;}
+.cat-btn:hover{color:var(--white);}
+.cat-btn.active{color:var(--white);border-bottom-color:var(--blue);}
+.featured-wrap{padding:3rem 3rem 2rem;}
+.featured-player{position:relative;width:100%;aspect-ratio:16/9;max-height:520px;background:var(--gray2);overflow:hidden;cursor:pointer;}
+.featured-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(8,8,8,0.95) 100%);pointer-events:none;}
+.featured-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;background:rgba(0,240,255,0.9);display:flex;align-items:center;justify-content:center;transition:transform 0.2s,background 0.2s;}
+.featured-player:hover .featured-play-btn{transform:translate(-50%,-50%) scale(1.08);background:var(--blue);}
+.featured-play-btn::after{content:'';display:block;width:0;height:0;border-style:solid;border-width:11px 0 11px 20px;border-color:transparent transparent transparent var(--black);margin-left:4px;}
+.featured-meta{position:absolute;bottom:0;left:0;right:0;padding:1.5rem 2rem;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;}
+.vtag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.2rem 0.55rem;display:inline-block;}
+.vtag-blue{background:var(--blue);color:var(--black);}
+.vtag-lime{background:var(--lime);color:var(--black);}
+.vtag-red{background:var(--red);color:var(--white);}
+.vtag-gray{background:rgba(255,255,255,0.1);color:var(--white);}
+.featured-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,3vw,2.5rem);line-height:1;letter-spacing:0.03em;color:var(--white);}
+.featured-sub{font-family:'Barlow Condensed',sans-serif;font-size:0.85rem;color:rgba(242,242,242,0.55);margin-top:0.3rem;}
+.video-section{padding:2rem 3rem 4rem;}
+.video-grid-h{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--muted2);}
+.video-grid-h.list-mode{grid-template-columns:1fr;background:transparent;gap:0;border-top:1px solid var(--muted2);border-bottom:1px solid var(--muted2);}
+.vcard{background:var(--gray);position:relative;overflow:hidden;cursor:pointer;transition:background 0.2s;}
+.vcard:hover{background:#1c1c1c;}
+.vcard-thumb{position:relative;width:100%;aspect-ratio:16/9;background:var(--gray2);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.vcard-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:rgba(0,240,255,0.85);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;}
+.vcard:hover .vcard-play{opacity:1;}
+.vcard-play::after{content:'';width:0;height:0;border-style:solid;border-width:7px 0 7px 13px;border-color:transparent transparent transparent var(--black);margin-left:2px;}
+.vcard-duration{position:absolute;bottom:0.4rem;right:0.5rem;font-family:'Bebas Neue',sans-serif;font-size:0.85rem;color:var(--white);background:rgba(8,8,8,0.8);padding:0.1rem 0.4rem;}
+.vcard-body{padding:1rem 1.1rem 1.2rem;}
+.vcard-tags{display:flex;gap:0.3rem;margin-bottom:0.5rem;flex-wrap:wrap;}
+.vcard-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.95rem;color:var(--white);line-height:1.4;margin-bottom:0.25rem;}
+.vcard-meta{font-size:0.72rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.06em;}
+.video-grid-h.list-mode .vcard{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--muted2);background:transparent;}
+.video-grid-h.list-mode .vcard-thumb{aspect-ratio:16/9;width:200px;height:112px;}
+.video-grid-h.list-mode .vcard-body{display:flex;flex-direction:column;justify-content:center;padding:1rem 1.4rem;}
+.shorts-section{padding:2rem 3rem 5rem;background:var(--gray);}
+.shorts-scroll{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:1px;background:var(--muted2);}
+.short-card{background:var(--gray2);position:relative;overflow:hidden;cursor:pointer;transition:background 0.2s;aspect-ratio:9/16;display:flex;flex-direction:column;justify-content:flex-end;}
+.short-card:hover{background:#222;}
+.short-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(8,8,8,0.92) 100%);}
+.short-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:rgba(0,240,255,0.8);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;}
+.short-card:hover .short-play{opacity:1;}
+.short-play::after{content:'';width:0;height:0;border-style:solid;border-width:6px 0 6px 11px;border-color:transparent transparent transparent var(--black);margin-left:2px;}
+.short-meta{position:relative;z-index:1;padding:0.7rem 0.8rem;}
+.short-tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.25rem;}
+.short-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;color:var(--white);line-height:1.3;}
+.short-dur{font-size:0.65rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;margin-top:0.2rem;}
+.btn-ghost{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.8rem 2.2rem;border:1px solid var(--muted2);color:var(--muted);background:none;cursor:pointer;transition:all 0.2s;}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
+.modal-wrap{display:none;position:fixed;inset:0;z-index:200;background:rgba(8,8,8,0.96);align-items:center;justify-content:center;padding:2rem;}
+.modal-wrap.open{display:flex;}
+.modal-inner{width:100%;max-width:900px;position:relative;}
+.modal-close{position:absolute;top:-2.5rem;right:0;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.14em;color:var(--muted);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:0.4rem;}
+.modal-close:hover{color:var(--white);}
+.modal-video{width:100%;aspect-ratio:16/9;background:var(--gray2);display:flex;align-items:center;justify-content:center;}
+.modal-video-short{width:100%;max-width:380px;margin:0 auto;aspect-ratio:9/16;background:var(--gray2);display:flex;align-items:center;justify-content:center;}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--white);margin-top:1rem;}
+.modal-sub{font-size:0.8rem;color:var(--muted);margin-top:0.3rem;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.08em;}
+footer{background:var(--gray);border-top:1px solid rgba(255,255,255,0.05);padding:3rem;text-align:center;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.1em;color:var(--white);margin-bottom:0.4rem;}
+.footer-logo span{color:var(--blue);}
+.footer-sub{font-size:0.75rem;color:var(--muted);margin-bottom:2rem;}
+.footer-links{display:flex;gap:2rem;justify-content:center;list-style:none;margin-bottom:1.5rem;}
+.footer-links a{font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;}
+.footer-links a:hover{color:var(--blue);}
+.footer-copy{font-size:0.7rem;color:rgba(102,102,102,0.4);}
+@media(max-width:768px){
+  .nav-links{display:none;}nav{padding:0 1.2rem;}
+  .hero-content,.featured-wrap,.video-section,.shorts-section{padding-left:1.2rem;padding-right:1.2rem;}
+  .filter-bar{padding:0 1.2rem;}
+  .count-bar{padding:1.2rem 1.5rem;gap:1.5rem;}
+  .video-grid-h.list-mode .vcard{grid-template-columns:140px 1fr;}
+  .video-grid-h.list-mode .vcard-thumb{width:140px;height:79px;}
+  .shorts-scroll{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));}
+  .modal-wrap{padding:1rem;}
+}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-content{animation:fadeInUp 0.8s ease 0.15s both;}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">CLASH<span>BEAT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Top</a></li><li><a href="about.html">About</a></li>
+    <li><a href="tournament.html">大会</a></li>
+    <li><a href="videos.html" class="active">映像</a></li><li><a href="players.html">選手</a></li>
+  </ul>
+  <a href="tournament.html" class="nav-cta">大会情報</a>
+</nav>
+<div class="page-hero">
+  <div class="hero-bg"></div><div class="hero-lines"></div>
+  <div class="hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span>映像 / アーカイブ</div>
+    <h1 class="page-title">VIDEO<br><em>ARCHIVE</em></h1>
+    <p class="page-subtitle">全試合・ドキュメンタリー・ショート動画を一挙公開。CLASH BEATの熱量をすべて見ろ。</p>
+  </div>
+</div>
+<div class="count-bar">
+  <div class="count-item"><div class="count-num blue" id="total-count">120</div><div class="count-label">Total Videos</div></div>
+  <div class="count-item"><div class="count-num" style="color:var(--white)">20</div><div class="count-label">横型 長尺</div></div>
+  <div class="count-item"><div class="count-num lime">100</div><div class="count-label">縦型 ショート</div></div>
+  <div class="count-item"><div class="count-num red">KR</div><div class="count-label">Korea コンテンツ</div></div>
+  <div style="margin-left:auto;">
+    <a href="https://www.youtube.com/@clashbeat1v1" target="_blank" rel="noopener" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.5rem 1.2rem;border:1px solid var(--muted2);color:var(--muted);text-decoration:none;display:inline-block;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--red)';this.style.color='var(--red)'" onmouseout="this.style.borderColor='var(--muted2)';this.style.color='var(--muted)'">▶ YouTube Ch.</a>
+  </div>
+</div>
+<div class="filter-bar">
+  <div class="filter-bar-inner">
+    <div class="filter-group">
+      <span class="filter-group-label">形式</span>
+      <div class="filter-chips">
+        <button class="chip active" onclick="setFilter('format','all',this)">すべて</button>
+        <button class="chip" onclick="setFilter('format','long',this)">横型 長尺</button>
+        <button class="chip" onclick="setFilter('format','short',this)">縦型 ショート</button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <span class="filter-group-label">カテゴリ</span>
+      <div class="filter-chips">
+        <button class="chip active" onclick="setFilter('cat','all',this)">すべて</button>
+        <button class="chip" onclick="setFilter('cat','final',this)">本戦・決勝</button>
+        <button class="chip" onclick="setFilter('cat','qualifier',this)">予選</button>
+        <button class="chip" onclick="setFilter('cat','audition',this)">オーディション</button>
+        <button class="chip" onclick="setFilter('cat','doc',this)">ドキュメンタリー</button>
+        <button class="chip" onclick="setFilter('cat','exhibition',this)">エキシビジョン</button>
+        <button class="chip" onclick="setFilter('cat','korea',this)">Korea</button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <span class="filter-group-label">年度</span>
+      <div class="filter-chips">
+        <button class="chip active" onclick="setFilter('year','all',this)">すべて</button>
+        <button class="chip" onclick="setFilter('year','2023',this)">2023</button>
+        <button class="chip" onclick="setFilter('year','2024',this)">2024</button>
+        <button class="chip" onclick="setFilter('year','2025',this)">2025</button>
+        <button class="chip" onclick="setFilter('year','2026',this)">2026</button>
+      </div>
+    </div>
+    <div class="layout-toggle">
+      <button class="layout-btn active" onclick="setLayout('grid',this)" title="グリッド"><svg viewBox="0 0 16 16"><rect x="0" y="0" width="7" height="7"/><rect x="9" y="0" width="7" height="7"/><rect x="0" y="9" width="7" height="7"/><rect x="9" y="9" width="7" height="7"/></svg></button>
+      <button class="layout-btn" onclick="setLayout('list',this)" title="リスト"><svg viewBox="0 0 16 16"><rect x="0" y="1" width="16" height="3"/><rect x="0" y="7" width="16" height="3"/><rect x="0" y="13" width="16" height="3"/></svg></button>
+    </div>
+  </div>
+</div>
+<div class="category-nav">
+  <button class="cat-btn active" onclick="scrollTo({top:document.getElementById('featured').offsetTop-130,behavior:'smooth'})">FEATURED</button>
+  <button class="cat-btn" onclick="scrollTo({top:document.getElementById('long-videos').offsetTop-130,behavior:'smooth'})">横型 長尺動画</button>
+  <button class="cat-btn" onclick="scrollTo({top:document.getElementById('shorts').offsetTop-130,behavior:'smooth'})">縦型 ショート</button>
+  <button class="cat-btn" onclick="scrollTo({top:document.getElementById('korea').offsetTop-130,behavior:'smooth'})">Korea</button>
+</div>
+
+<!-- FEATURED -->
+<div id="featured" class="featured-wrap">
+  <div class="sec-label">Featured</div>
+  <!--
+    ▼ 動画の追加・差し替え方法:
+    onclick="openModal('動画ID','タイトル','サブタイトル')" の '動画ID' を書き換えるだけ。
+    動画IDは YouTube URL の watch?v=●●● または youtu.be/●●● の ●●● 部分。
+    クリックすると実際の YouTube プレーヤーが埋め込み再生されます（縦型ショートは openModalShort）。
+  -->
+  <div class="featured-player" onclick="openModal('T8N7aCOWojw','CLASH BEAT 2025 決勝トーナメント 後半戦','1on1最強決定戦 — 横浜武道館 2025')">
+    <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a1020 0%,#080810 100%);display:flex;align-items:center;justify-content:center;"><div style="text-align:center;opacity:0.15;"><div style="font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:0.1em;color:var(--white);">CLASH BEAT</div><div style="font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;letter-spacing:0.15em;color:var(--white);">2025 FINAL TOURNAMENT</div></div></div>
+    <div class="featured-overlay"></div>
+    <div class="featured-play-btn"></div>
+    <div class="featured-meta">
+      <div>
+        <div style="display:flex;gap:0.4rem;margin-bottom:0.6rem;"><span class="vtag vtag-blue">FINAL 2025</span><span class="vtag vtag-gray">YouTube</span></div>
+        <div class="featured-title">2025 決勝トーナメント<br>後半戦</div>
+        <div class="featured-sub">全国予選を勝ち抜いた猛者が横浜武道館に集結 — 優勝賞金300万円</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LONG VIDEOS -->
+<div id="long-videos" class="video-section">
+  <div class="sec-label">横型 長尺動画 — 20本</div>
+  <div class="video-grid-h" id="long-grid">
+    <div class="vcard" data-cat="final" data-year="2025" data-format="long" onclick="openModal('T8N7aCOWojw','CLASH BEAT 2025 決勝トーナメント 後半戦','1on1最強決定戦 — 横浜武道館 2025')">
+      <div class="vcard-thumb"><img src="https://i.ytimg.com/vi/T8N7aCOWojw/hqdefault.jpg" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;"><div class="vcard-play"></div></div>
+      <div class="vcard-body"><div class="vcard-tags"><span class="vtag vtag-blue">FINAL</span><span class="vtag vtag-gray">2025</span></div><div class="vcard-title">2025 決勝トーナメント<br>後半戦</div><div class="vcard-meta">横浜武道館 — 2025</div></div>
+    </div>
+    <div class="vcard" data-cat="final" data-year="2025" data-format="long" onclick="openModal('AObz6Jlm-mg','CLASH BEAT 2025 決勝トーナメント 前半戦','1on1最強決定戦 — 横浜武道館 2025')">
+      <div class="vcard-thumb"><img src="https://i.ytimg.com/vi/AObz6Jlm-mg/hqdefault.jpg" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;"><div class="vcard-play"></div></div>
+      <div class="vcard-body"><div class="vcard-tags"><span class="vtag vtag-blue">FINAL</span><span class="vtag vtag-gray">2025</span></div><div class="vcard-title">2025 決勝トーナメント<br>前半戦</div><div class="vcard-meta">横浜武道館 — 2025</div></div>
+    </div>
+    <div class="vcard" data-cat="doc" data-year="" data-format="long" onclick="openModal('E1p72TWJP0E','ドキュメンタリー','CLASH BEAT')">
+      <div class="vcard-thumb"><div class="vcard-play"></div></div>
+      <div class="vcard-body"><div class="vcard-tags"><span class="vtag vtag-lime">DOC</span><span class="vtag vtag-gray">公開日確認中</span></div><div class="vcard-title">ドキュメンタリー</div><div class="vcard-meta">※並び順 仮置き</div></div>
+    </div>
+    <div class="vcard" data-cat="exhibition" data-year="" data-format="long" onclick="openModal('cKNSckct-VE','エキシビジョン','CLASH BEAT')">
+      <div class="vcard-thumb"><div class="vcard-play"></div></div>
+      <div class="vcard-body"><div class="vcard-tags"><span class="vtag vtag-blue">EXHIBITION</span><span class="vtag vtag-gray">公開日確認中</span></div><div class="vcard-title">エキシビジョン</div><div class="vcard-meta">※並び順 仮置き</div></div>
+    </div>
+    <div class="vcard" data-cat="doc" data-year="2024" data-format="long" onclick="openModal('0WKwRR4_7qA','CLASH BEAT 2を終えて...出演者達のその後を追う','ドキュメンタリー — 2024')">
+      <div class="vcard-thumb"><div class="vcard-play"></div></div>
+      <div class="vcard-body"><div class="vcard-tags"><span class="vtag vtag-lime">DOC</span><span class="vtag vtag-gray">2024</span></div><div class="vcard-title">ドキュメンタリー<br>CLASH BEAT 2を終えて</div><div class="vcard-meta">出演者達のその後を追う — 2024</div></div>
+    </div>
+    <div class="vcard" data-cat="final" data-year="2024" data-format="long" onclick="openModal('5tAZE_ZpoRU','CLASH BEAT 2 本戦','1on1最強を決める — 2024')">
+      <div class="vcard-thumb"><div class="vcard-play"></div></div>
+      <div class="vcard-body"><div class="vcard-tags"><span class="vtag vtag-blue">FINAL</span><span class="vtag vtag-gray">2024</span></div><div class="vcard-title">CLASH BEAT 2<br>本戦</div><div class="vcard-meta">1on1最強を決める — 2024</div></div>
+    </div>
+    <div class="vcard" data-cat="audition" data-year="2024" data-format="long" onclick="openModal('j_jUFUZgqFs','CLASH BEAT 2 オーディション後編','1on1オーディション — 2024')">
+      <div class="vcard-thumb"><div class="vcard-play"></div></div>
+      <div class="vcard-body"><div class="vcard-tags"><span class="vtag vtag-lime">AUDITION</span><span class="vtag vtag-gray">2024</span></div><div class="vcard-title">CLASH BEAT 2<br>オーディション後編</div><div class="vcard-meta">CLASH BEAT 第2回 — 2024</div></div>
+    </div>
+    <div class="vcard" data-cat="final" data-year="2023" data-format="long" onclick="openModal('92IaaOlURj0','CLASH BEAT 1 ハイライト','第1回大会ハイライト — 2023')">
+      <div class="vcard-thumb"><img src="https://i.ytimg.com/vi/92IaaOlURj0/hqdefault.jpg" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;"><div class="vcard-play"></div></div>
+      <div class="vcard-body"><div class="vcard-tags"><span class="vtag vtag-blue">HIGHLIGHT</span><span class="vtag vtag-gray">2023</span></div><div class="vcard-title">CLASH BEAT 1<br>ハイライト</div><div class="vcard-meta">CLASH BEAT 第1回 — 2023</div></div>
+    </div>
+    <div class="vcard" data-cat="final" data-year="2023" data-format="long" onclick="openModal('XGDrXmZw6mI','CLASH BEAT 1 本戦','日本バスケ界の新しい1on1イベント — 2023')">
+      <div class="vcard-thumb"><img src="https://i.ytimg.com/vi/XGDrXmZw6mI/hqdefault.jpg" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;"><div class="vcard-play"></div></div>
+      <div class="vcard-body"><div class="vcard-tags"><span class="vtag vtag-blue">FINAL</span><span class="vtag vtag-gray">2023</span></div><div class="vcard-title">CLASH BEAT 1<br>本戦</div><div class="vcard-meta">CLASH BEAT 第1回 — 2023</div></div>
+    </div>
+    <div class="vcard" data-cat="audition" data-year="2023" data-format="long" onclick="openModal('HMMnzWf6tF8','CLASH BEAT 1 オーディション前編','1on1オーディション — 2023')">
+      <div class="vcard-thumb"><img src="https://i.ytimg.com/vi/HMMnzWf6tF8/hqdefault.jpg" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;"><div class="vcard-play"></div></div>
+      <div class="vcard-body"><div class="vcard-tags"><span class="vtag vtag-lime">AUDITION</span><span class="vtag vtag-gray">2023</span></div><div class="vcard-title">CLASH BEAT 1<br>オーディション前編</div><div class="vcard-meta">CLASH BEAT 第1回 — 2023</div></div>
+    </div>
+    <div class="vcard" data-cat="qualifier" data-year="2025" data-format="long" onclick="openModal('','予選ハイライト（準備中）','動画IDを設定してください')">
+      <div class="vcard-thumb"><div style="width:100%;height:100%;background:linear-gradient(135deg,#0a0a1a,#060610);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;opacity:0.15;color:var(--white);">▶</span></div><div class="vcard-play"></div><span class="vcard-duration">準備中</span></div>
+      <div class="vcard-body"><div class="vcard-tags"><span class="vtag vtag-blue">予選</span><span class="vtag vtag-gray">2025</span></div><div class="vcard-title">予選 ハイライト</div><div class="vcard-meta">※動画ID未設定</div></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:2rem;"><a class="btn-ghost" href="https://www.youtube.com/@clashbeat1v1/videos" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">YouTubeで全ての動画を見る ▶</a></div>
+</div>
+
+<!-- SHORTS -->
+<div id="shorts" class="shorts-section">
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+    <div>
+      <div class="sec-label lime">縦型 ショート動画 — 100本+</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1;letter-spacing:0.03em;">SHORTS<span style="color:var(--lime);margin-left:0.4rem;">/ REELS</span></div>
+    </div>
+    <div style="display:flex;gap:0.4rem;flex-wrap:wrap;">
+      <button class="chip active" onclick="filterShorts('all',this)" style="font-size:0.65rem;">すべて</button>
+      <button class="chip" onclick="filterShorts('本戦',this)" style="font-size:0.65rem;">本戦</button>
+      <button class="chip" onclick="filterShorts('予選',this)" style="font-size:0.65rem;">予選</button>
+      <button class="chip" onclick="filterShorts('korea',this)" style="font-size:0.65rem;">Korea</button>
+      <button class="chip" onclick="filterShorts('企画',this)" style="font-size:0.65rem;">企画</button>
+      <button class="chip" onclick="filterShorts('選手',this)" style="font-size:0.65rem;">選手紹介</button>
+    </div>
+  </div>
+  <div class="shorts-scroll" id="shorts-grid">
+    <div class="short-card" data-stag="本戦" onclick="openModalShort('u5H-Ro3zh6U','富樫 vs コタロー ドリームマッチ','Shorts')"><div style="position:absolute;inset:0;background:linear-gradient(180deg,#0a1020,#060810);"></div><div class="short-overlay"></div><div class="short-play"></div><div class="short-meta"><div class="short-tag" style="color:var(--blue)">DREAM MATCH</div><div class="short-title">富樫 vs コタロー</div><div class="short-dur">Shorts</div></div></div>
+    <div class="short-card" data-stag="本戦" onclick="openModalShort('Xida83_tG40','女子選手が男子を翻弄！？','Shorts')"><div style="position:absolute;inset:0;background:linear-gradient(180deg,#0d0a1a,#08060e);"></div><div class="short-overlay"></div><div class="short-play"></div><div class="short-meta"><div class="short-tag" style="color:var(--blue)">HIGHLIGHT</div><div class="short-title">女子選手が男子を翻弄！？</div><div class="short-dur">Shorts</div></div></div>
+    <div class="short-card" data-stag="本戦" onclick="openModalShort('2vghVvYT4rE','日本代表 原選手にハセが挑む','Shorts')"><div style="position:absolute;inset:0;background:linear-gradient(180deg,#0a1418,#060c10);"></div><div class="short-overlay"></div><div class="short-play"></div><div class="short-meta"><div class="short-tag" style="color:var(--blue)">DREAM MATCH</div><div class="short-title">原選手にハセが挑む</div><div class="short-dur">Shorts</div></div></div>
+    <div class="short-card" data-stag="予選" onclick="openModalShort('faBfVqZcONQ','沖縄決勝 3本勝負','Shorts')"><div style="position:absolute;inset:0;background:linear-gradient(180deg,#141008,#0c0804);"></div><div class="short-overlay"></div><div class="short-play"></div><div class="short-meta"><div class="short-tag" style="color:var(--lime)">決勝</div><div class="short-title">沖縄決勝 3本勝負</div><div class="short-dur">Shorts</div></div></div>
+    <div class="short-card" data-stag="予選" onclick="openModalShort('TLxdfATE2zw','東京決勝は驚きの展開に！','Shorts')"><div style="position:absolute;inset:0;background:linear-gradient(180deg,#101808,#0a1004);"></div><div class="short-overlay"></div><div class="short-play"></div><div class="short-meta"><div class="short-tag" style="color:var(--lime)">決勝</div><div class="short-title">東京決勝 驚きの展開</div><div class="short-dur">Shorts</div></div></div>
+    <div class="short-card" data-stag="予選" onclick="openModalShort('c6c46e1vo9Q','岡山決勝 チームメイトの同級生対決','Shorts')"><div style="position:absolute;inset:0;background:linear-gradient(180deg,#0a1018,#060810);"></div><div class="short-overlay"></div><div class="short-play"></div><div class="short-meta"><div class="short-tag" style="color:var(--lime)">決勝</div><div class="short-title">岡山決勝 同級生対決</div><div class="short-dur">Shorts</div></div></div>
+    <div class="short-card" data-stag="企画" onclick="openModalShort('LQg2nnxbsuk','馬場選手が観客と1on1した結果...','Shorts')"><div style="position:absolute;inset:0;background:linear-gradient(180deg,#081410,#040c08);"></div><div class="short-overlay"></div><div class="short-play"></div><div class="short-meta"><div class="short-tag" style="color:var(--lime)">企画</div><div class="short-title">馬場選手が観客と1on1</div><div class="short-dur">Shorts</div></div></div>
+    <div class="short-card" data-stag="選手" onclick="openModalShort('LdG2PfEiebs','44歳SHUICHIがゴリゴリやってくる','Shorts')"><div style="position:absolute;inset:0;background:linear-gradient(180deg,#181008,#100804);"></div><div class="short-overlay"></div><div class="short-play"></div><div class="short-meta"><div class="short-tag" style="color:var(--lime)">選手</div><div class="short-title">44歳SHUICHIがゴリゴリやってくる</div><div class="short-dur">Shorts</div></div></div>
+  </div>
+  <div style="text-align:center;margin-top:2rem;">
+    <a class="btn-ghost" href="https://www.youtube.com/@clashbeat1v1/shorts" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;">YouTubeでショートを全て見る ▶</a>
+  </div>
+</div>
+
+<!-- KOREA -->
+<div id="korea" class="video-section" style="background:var(--black);padding-top:1rem;">
+  <div class="sec-label red">Korea Content</div>
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1;letter-spacing:0.03em;margin-bottom:0.4rem;">🇰🇷 CLASH BEAT <span style="color:var(--red)">KOREA</span></div>
+  <p style="font-family:'Barlow Condensed',sans-serif;font-size:0.85rem;color:rgba(242,242,242,0.5);margin-bottom:1.5rem;line-height:1.7;">CLASH BEAT 1on1 Korea 2026 — ソウル・서경대학교 体育館（2026.5.5 開催）。<br>予選 <a href="https://www.youtube.com/playlist?list=PL3S6yIIru9k9Hjaul65-RqTTr4toHM0cl" target="_blank" rel="noopener" style="color:var(--red);text-decoration:none;">▶ プレイリストを開く</a>　／　トーナメント <a href="https://www.youtube.com/playlist?list=PL3S6yIIru9k_OV2nZRoQV1dOu78jIwOjX" target="_blank" rel="noopener" style="color:var(--red);text-decoration:none;">▶ プレイリストを開く</a></p>
+  <div class="video-grid-h" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
+    <div class="vcard" data-cat="korea" data-year="2026" data-format="long" onclick="openModal('xizRpcqZ8us','CLASH BEAT 1on1 Korea 2026 本戦 #1','ソウル・서경대학교 — 2026.5.5')">
+      <div class="vcard-thumb"><div style="width:100%;height:100%;background:linear-gradient(135deg,#240a0a,#140505);display:flex;align-items:center;justify-content:center;font-size:3rem;opacity:0.08;">🇰🇷</div><div class="vcard-play"></div></div>
+      <div class="vcard-body"><div class="vcard-tags"><span class="vtag vtag-red">KOREA</span><span class="vtag vtag-gray">2026</span></div><div class="vcard-title">CLASH BEAT 1on1 Korea 2026<br>本戦 #1</div><div class="vcard-meta">ソウル・서경대학교 — 2026.5.5</div></div>
+    </div>
+    <div class="vcard" data-cat="korea" data-year="2026" data-format="long" onclick="openModal('kus5pr1lQA8','CLASH BEAT 1on1 Korea 2026 本戦 #2','ソウル・서경대학교 — 2026.5.5')">
+      <div class="vcard-thumb"><div style="width:100%;height:100%;background:linear-gradient(135deg,#1a0808,#100404);"></div><div class="vcard-play"></div></div>
+      <div class="vcard-body"><div class="vcard-tags"><span class="vtag vtag-red">KOREA</span><span class="vtag vtag-gray">2026</span></div><div class="vcard-title">CLASH BEAT 1on1 Korea 2026<br>本戦 #2</div><div class="vcard-meta">ソウル・서경대학교 — 2026.5.5</div></div>
+    </div>
+    <div class="vcard" data-cat="korea" data-year="2026" data-format="long" onclick="openModal('eUyvFGO6NiU','CLASH BEAT 1on1 Korea 2026 本戦 #3','ソウル・서경대학교 — 2026.5.5')">
+      <div class="vcard-thumb"><div style="width:100%;height:100%;background:linear-gradient(135deg,#200c0c,#0e0606);"></div><div class="vcard-play"></div></div>
+      <div class="vcard-body"><div class="vcard-tags"><span class="vtag vtag-red">KOREA</span><span class="vtag vtag-gray">2026</span></div><div class="vcard-title">CLASH BEAT 1on1 Korea 2026<br>本戦 #3</div><div class="vcard-meta">ソウル・서경대학교 — 2026.5.5</div></div>
+    </div>
+    <div class="vcard" data-cat="korea" data-year="2026" data-format="long" onclick="openModal('vZ4YJYElwWw','CLASH BEAT 1on1 Korea 2026 本戦 #4','ソウル・서경대학교 — 2026.5.5')">
+      <div class="vcard-thumb"><div style="width:100%;height:100%;background:linear-gradient(135deg,#21100a,#100806);"></div><div class="vcard-play"></div></div>
+      <div class="vcard-body"><div class="vcard-tags"><span class="vtag vtag-red">KOREA</span><span class="vtag vtag-gray">2026</span></div><div class="vcard-title">CLASH BEAT 1on1 Korea 2026<br>本戦 #4</div><div class="vcard-meta">ソウル・서경대학교 — 2026.5.5</div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">CLASH<span>BEAT</span></div>
+  <div class="footer-sub">日本発バスケ1on1 競技エンタメIP</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Top</a></li><li><a href="about.html">About</a></li>
+    <li><a href="tournament.html">大会</a></li><li><a href="videos.html">映像</a></li><li><a href="players.html">選手</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 CLASH BEAT. All rights reserved.</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-wrap" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal()">✕ 閉じる</button>
+    <div id="modal-video-container"></div>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-sub" id="modal-sub"></div>
+  </div>
+</div>
+
+<script>
+const filterState={format:'all',cat:'all',year:'all'};
+function setFilter(type,val,btn){
+  filterState[type]=val;
+  btn.closest('.filter-chips').querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+function applyFilters(){
+  const cards=document.querySelectorAll('#long-grid .vcard');
+  let shown=0;
+  cards.forEach(card=>{
+    const mf=filterState.format==='all'||card.dataset.format===filterState.format;
+    const mc=filterState.cat==='all'||card.dataset.cat===filterState.cat;
+    const my=filterState.year==='all'||card.dataset.year===filterState.year;
+    const show=mf&&mc&&my;
+    card.style.display=show?'':'none';
+    if(show)shown++;
+  });
+  document.getElementById('total-count').textContent=shown;
+}
+function setLayout(mode,btn){
+  document.querySelectorAll('.layout-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const grid=document.getElementById('long-grid');
+  if(mode==='list')grid.classList.add('list-mode');
+  else grid.classList.remove('list-mode');
+}
+function filterShorts(tag,btn){
+  const parent=btn.closest('div');
+  parent.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#shorts-grid .short-card').forEach(c=>{
+    c.style.display=(tag==='all'||c.dataset.stag===tag)?'':'none';
+  });
+}
+/* =========================================================
+   動画の追加・差し替えはカンタン:
+   各カードの onclick="openModal('ここ', ...)" の 'ここ' に
+   ★ YouTube の URL をそのまま貼るだけ ★（IDだけでもOK）
+   対応URL例:
+     https://youtu.be/XXXXXXXXXXX
+     https://www.youtube.com/watch?v=XXXXXXXXXXX
+     https://www.youtube.com/shorts/XXXXXXXXXXX
+   サムネイル画像はURLから自動生成され、クリックで再生されます。
+   動画(iframe)はクリックした瞬間だけ読み込むのでページは軽いままです。
+   ========================================================= */
+
+// URL でも 動画ID でも受け取り、11桁の動画IDを返す（無ければ ''）
+function ytId(s){
+  if(!s) return '';
+  s=String(s).trim();
+  if(/^[A-Za-z0-9_-]{11}$/.test(s)) return s;            // すでにIDだけ
+  var m=s.match(/(?:youtu\.be\/|v=|\/embed\/|\/shorts\/|\/live\/)([A-Za-z0-9_-]{11})/);
+  return m?m[1]:'';
+}
+// 動画IDから軽量サムネイル画像URL
+function ytThumb(id){ return 'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg'; }
+
+// 動画未設定のときモーダルに出すプレースホルダ
+function pendingBox(vertical){
+  return '<div class="'+(vertical?'modal-video-short':'modal-video')+'"><div style="color:var(--muted);text-align:center;font-family:\'Barlow Condensed\',sans-serif;font-size:0.8rem;letter-spacing:0.1em;"><div style="font-size:2rem;margin-bottom:0.5rem;opacity:0.3;">▶</div>この動画はまだ設定されていません<br>このカードの onclick に YouTube の URL を貼ってください</div></div>';
+}
+function buildIframe(id,vertical){
+  var style=vertical
+    ? 'width:100%;max-width:380px;margin:0 auto;aspect-ratio:9/16;border:none;display:block;background:#000;'
+    : 'width:100%;aspect-ratio:16/9;border:none;display:block;background:#000;';
+  return '<iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0" style="'+style+'" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>';
+}
+// 横型（16:9）。第1引数は URL でも ID でも可。
+function openModal(urlOrId,title,sub){
+  var id=ytId(urlOrId);
+  document.getElementById('modal-title').textContent=title||'';
+  document.getElementById('modal-sub').textContent=sub||'';
+  document.getElementById('modal-video-container').innerHTML=id?buildIframe(id,false):pendingBox(false);
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+// 縦型（9:16）ショート・リール用。
+function openModalShort(urlOrId,title,sub){
+  var id=ytId(urlOrId);
+  document.getElementById('modal-title').textContent=title||'';
+  document.getElementById('modal-sub').textContent=sub||'';
+  document.getElementById('modal-video-container').innerHTML=id?buildIframe(id,true):pendingBox(true);
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('modal-video-container').innerHTML='';
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+
+// ===== 各カードの onclick からURL/IDを読み取り、サムネイルを自動表示 =====
+// （カード側の編集は onclick の第1引数にURLを貼るだけ。サムネは触らなくてOK）
+//
+//  ★サムネイル画像の置き場所:  thumbnails/<動画ID>.jpg
+//    例) thumbnails/T8N7aCOWojw.jpg をフォルダに入れるだけで自動表示。
+//    まだ画像が無いカードは YouTube の自動サムネが仮表示されます。
+//    （カードごとに別名を使いたい場合は data-thumb="任意のパス" を付ければ優先されます）
+var THUMB_DIR='thumbnails/';
+function localThumb(el,id){
+  var explicit=el.getAttribute('data-thumb');
+  return explicit || (THUMB_DIR+id+'.jpg');
+}
+// 自前画像→無ければYouTube自動サムネ→それも失敗なら非表示（グラデ背景が見える）
+function makeThumbImg(el,id){
+  var img=document.createElement('img');
+  img.alt=''; img.loading='lazy';
+  img.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;';
+  img.dataset.step='local';
+  img.onerror=function(){
+    if(img.dataset.step==='local'){ img.dataset.step='yt'; img.src=ytThumb(id); }
+    else { img.style.display='none'; }
+  };
+  img.src=localThumb(el,id);
+  return img;
+}
+function applyThumb(el,id){
+  if(el.classList.contains('vcard')){
+    var t=el.querySelector('.vcard-thumb'); if(!t) return;
+    Array.prototype.forEach.call(t.querySelectorAll(':scope > div:not(.vcard-play), :scope > img'),function(n){n.remove();});
+    t.insertBefore(makeThumbImg(el,id), t.firstChild);
+    var dur=t.querySelector('.vcard-duration'); if(dur && dur.textContent.indexOf('準備中')>-1) dur.remove();
+  }else if(el.classList.contains('short-card')){
+    var s=el.querySelector(':scope > div'); if(s) s.remove(); // 最初のグラデ層を画像に置き換え
+    el.insertBefore(makeThumbImg(el,id), el.firstChild);
+    var sd=el.querySelector('.short-dur'); if(sd && sd.textContent.indexOf('準備中')>-1) sd.textContent='Shorts';
+  }else if(el.classList.contains('featured-player')){
+    var f=el.querySelector(':scope > div'); if(f) f.remove();
+    el.insertBefore(makeThumbImg(el,id), el.firstChild);
+  }
+}
+function setupThumbnails(){
+  Array.prototype.forEach.call(document.querySelectorAll('[onclick^="openModal"]'),function(el){
+    var oc=el.getAttribute('onclick')||'';
+    var m=oc.match(/^openModal(?:Short)?\(\s*'([^']*)'/);
+    if(!m) return;
+    var id=ytId(m[1]);
+    if(id) applyThumb(el,id);
+  });
+}
+if(document.readyState!=='loading') setupThumbnails();
+else document.addEventListener('DOMContentLoaded',setupThumbnails);
+</script>
+</body>
+</html>

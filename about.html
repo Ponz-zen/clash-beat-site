@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — CLASH BEAT</title>
+<meta name="description" content="CLASH BEATとは。ルール・世界観・高田真希・プロジェクトヒストリー。">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --black:#080808;--white:#f2f2f2;--blue:#00f0ff;--lime:#b8ff00;--red:#ff2424;--gray:#141414;--gray2:#1e1e1e;--gray3:#2a2a2a;--muted:#666;--muted2:#333; }
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'Noto Sans JP',sans-serif;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:64px;background:rgba(8,8,8,0.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.05);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.55rem;letter-spacing:0.1em;color:var(--white);text-decoration:none;}
+.nav-logo span{color:var(--blue);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:0.82rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--white);}
+.nav-links a.active{color:var(--blue);}
+.nav-cta{background:var(--blue);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.5rem 1.2rem;text-decoration:none;transition:background 0.2s;}
+.nav-cta:hover{background:var(--lime);}
+.page-hero{padding-top:64px;height:56vh;min-height:380px;display:flex;align-items:flex-end;position:relative;overflow:hidden;}
+.page-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 85% 30%,rgba(0,240,255,0.07) 0%,transparent 55%),radial-gradient(ellipse 50% 60% at 10% 80%,rgba(184,255,0,0.04) 0%,transparent 55%),var(--black);}
+.page-hero-lines{position:absolute;inset:0;opacity:0.03;background-image:linear-gradient(0deg,rgba(255,255,255,1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px);background-size:48px 48px;}
+.page-hero-content{position:relative;z-index:2;padding:0 3rem 3.5rem;width:100%;}
+.breadcrumb{font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+.breadcrumb a{color:var(--blue);text-decoration:none;}
+.breadcrumb span{opacity:0.4;}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,8vw,7rem);line-height:0.9;letter-spacing:0.02em;}
+.page-title em{font-style:normal;color:var(--blue);}
+.page-subtitle{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;color:rgba(242,242,242,0.55);margin-top:0.8rem;letter-spacing:0.04em;}
+.container{max-width:1160px;margin:0 auto;}
+.sec{padding:5.5rem 3rem;}
+.sec-sm{padding:4rem 3rem;}
+.label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:0.6rem;margin-bottom:0.9rem;}
+.label::before{content:'';display:block;width:18px;height:1px;background:var(--blue);}
+.h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4.5vw,4rem);line-height:1;letter-spacing:0.03em;}
+.h2 em{font-style:normal;color:var(--lime);}
+.h2 .blue{color:var(--blue);}
+.body-text{font-size:0.97rem;line-height:1.9;color:rgba(242,242,242,0.68);}
+.body-text p{margin-bottom:1.1rem;}
+.body-text p:last-child{margin-bottom:0;}
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.intro-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--muted2);margin-top:2.5rem;}
+.intro-stat{background:var(--gray2);padding:1.4rem 1.2rem;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--blue);line-height:1;}
+.stat-label{font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:0.2rem;}
+.tag-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:2rem;}
+.tag{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--muted2);color:var(--muted);padding:0.35rem 0.75rem;transition:border-color 0.2s,color 0.2s;}
+.tag:hover{border-color:var(--blue);color:var(--blue);cursor:default;}
+.rule-sec{background:var(--gray);}
+.rule-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:center;}
+.rule-visual{position:relative;aspect-ratio:1/1.1;max-width:420px;}
+.court-svg{width:100%;}
+.rule-items{margin-top:2rem;display:flex;flex-direction:column;gap:0;}
+.rule-item{display:grid;grid-template-columns:48px 1fr;gap:0 1.2rem;align-items:start;padding:1.4rem 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+.rule-item:first-child{border-top:1px solid rgba(255,255,255,0.06);}
+.rule-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--muted2);line-height:1;padding-top:2px;}
+.rule-item:hover .rule-num{color:var(--blue);}
+.rule-item-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:0.06em;color:var(--white);margin-bottom:0.3rem;}
+.rule-item-desc{font-size:0.82rem;color:var(--muted);line-height:1.6;}
+.rule-badge{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.2);color:var(--blue);font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.06em;padding:1.2rem 2rem;margin-top:2rem;}
+.world-sec{background:var(--black);}
+.world-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--muted2);margin-top:3rem;}
+.world-card{background:var(--gray);padding:2.2rem 1.8rem;position:relative;overflow:hidden;transition:background 0.25s;}
+.world-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background 0.25s;}
+.world-card:hover{background:#1a1a1a;}
+.world-card:hover::before{background:var(--blue);}
+.world-card.lime:hover::before{background:var(--lime);}
+.world-card.red:hover::before{background:var(--red);}
+.world-card-icon{font-size:1.6rem;margin-bottom:1rem;line-height:1;opacity:0.9;}
+.world-card-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);margin-bottom:0.6rem;}
+.world-card-desc{font-size:0.82rem;color:var(--muted);line-height:1.65;}
+.world-quote{margin-top:4rem;padding:3rem;background:var(--gray2);border-left:3px solid var(--lime);position:relative;}
+.world-quote::before{content:'"';position:absolute;top:1rem;left:2rem;font-family:'Bebas Neue',sans-serif;font-size:6rem;color:rgba(184,255,0,0.08);line-height:1;pointer-events:none;}
+.world-quote-text{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.3rem,2.5vw,1.9rem);font-style:italic;color:var(--white);line-height:1.5;letter-spacing:0.02em;position:relative;z-index:1;}
+.world-quote-text span{color:var(--lime);}
+.world-quote-attr{font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:1.2rem;}
+.takada-sec{background:var(--gray);}
+.takada-layout{display:grid;grid-template-columns:380px 1fr;gap:5rem;align-items:start;}
+.takada-photo-placeholder{width:100%;aspect-ratio:3/4;background:linear-gradient(160deg,#1a1a2e 0%,#0d0d0d 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;color:var(--muted);border:1px solid var(--muted2);}
+.takada-photo-placeholder span{font-size:0.75rem;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.1em;}
+.takada-name-card{background:rgba(8,8,8,0.92);padding:1.2rem 1.4rem;border-top:2px solid var(--blue);}
+.takada-name-jp{font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:1.4rem;line-height:1;margin-bottom:0.2rem;}
+.takada-name-en{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.12em;color:var(--blue);}
+.takada-role{font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem;}
+.career-item{display:flex;gap:1.2rem;padding:0.9rem 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.career-year{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--blue);min-width:48px;padding-top:1px;}
+.career-desc{font-size:0.82rem;color:rgba(242,242,242,0.6);line-height:1.6;}
+.takada-message{margin-top:2.5rem;padding:2rem;background:rgba(0,240,255,0.04);border:1px solid rgba(0,240,255,0.12);}
+.takada-message-label{font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);margin-bottom:0.8rem;}
+.takada-message-text{font-size:0.95rem;line-height:1.9;color:rgba(242,242,242,0.75);}
+.history-sec{background:var(--black);}
+.history-item{display:grid;grid-template-columns:120px 1fr;border-top:1px solid rgba(255,255,255,0.06);}
+.history-item:last-child{border-bottom:1px solid rgba(255,255,255,0.06);}
+.history-year-col{padding:2rem 2rem 2rem 0;display:flex;flex-direction:column;align-items:flex-start;}
+.history-year{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--muted2);line-height:1;}
+.history-item.now .history-year{color:var(--blue);}
+.history-item.next .history-year{color:var(--lime);}
+.history-dot{width:8px;height:8px;border-radius:50%;background:var(--muted2);margin-top:0.5rem;}
+.history-item.now .history-dot{background:var(--blue);box-shadow:0 0 0 4px rgba(0,240,255,0.12);}
+.history-item.next .history-dot{background:var(--lime);}
+.history-content-col{padding:2rem 0 2rem 2rem;border-left:1px solid rgba(255,255,255,0.06);}
+.history-event-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;color:var(--white);letter-spacing:0.04em;margin-bottom:0.4rem;}
+.history-event-desc{font-size:0.83rem;color:var(--muted);line-height:1.65;}
+.history-tags{display:flex;gap:0.4rem;flex-wrap:wrap;margin-top:0.7rem;}
+.htag{font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.55rem;}
+.htag-blue{background:rgba(0,240,255,0.1);color:var(--blue);}
+.htag-lime{background:rgba(184,255,0,0.1);color:var(--lime);}
+.htag-red{background:rgba(255,36,36,0.1);color:var(--red);}
+.htag-gray{background:rgba(255,255,255,0.06);color:var(--muted);}
+.cta-band{background:var(--blue);padding:4rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem;}
+.cta-band-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.2rem);color:var(--black);line-height:1;}
+.cta-band-sub{font-family:'Barlow Condensed',sans-serif;font-size:1rem;color:rgba(8,8,8,0.65);margin-top:0.3rem;}
+.btn-dark{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.9rem 2rem;background:var(--black);color:var(--white);text-decoration:none;transition:background 0.2s;display:inline-block;}
+.btn-dark:hover{background:#222;}
+.btn-outline-dark{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.9rem 2rem;border:1px solid rgba(8,8,8,0.3);color:var(--black);text-decoration:none;display:inline-block;}
+footer{background:var(--gray);border-top:1px solid rgba(255,255,255,0.05);padding:3rem;text-align:center;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.1em;color:var(--white);margin-bottom:0.4rem;}
+.footer-logo span{color:var(--blue);}
+.footer-sub{font-size:0.75rem;color:var(--muted);margin-bottom:2rem;}
+.footer-links{display:flex;gap:2rem;justify-content:center;list-style:none;margin-bottom:1.5rem;}
+.footer-links a{font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;}
+.footer-links a:hover{color:var(--blue);}
+.footer-copy{font-size:0.7rem;color:rgba(119,119,119,0.45);}
+@media(max-width:768px){
+  .nav-links{display:none;}nav{padding:0 1.2rem;}
+  .page-hero-content{padding:0 1.5rem 2.5rem;}
+  .sec,.sec-sm{padding:3.5rem 1.4rem;}
+  .intro-grid,.rule-layout,.takada-layout,.world-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .intro-stat-row{grid-template-columns:1fr 1fr;}
+  .world-grid{background:transparent;gap:1rem;}
+  .world-card{border:1px solid var(--muted2);}
+  .history-item{grid-template-columns:80px 1fr;}
+  .cta-band{flex-direction:column;gap:1.5rem;}
+  .takada-layout{grid-template-columns:1fr;}
+}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.page-hero-content{animation:fadeInUp 0.9s ease 0.2s both;}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">CLASH<span>BEAT</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Top</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="tournament.html">大会</a></li>
+    <li><a href="videos.html">映像</a></li>
+    <li><a href="players.html">選手</a></li>
+  </ul>
+  <a href="tournament.html" class="nav-cta">大会情報</a>
+</nav>
+<div class="page-hero">
+  <div class="page-hero-bg"></div><div class="page-hero-lines"></div>
+  <div class="page-hero-content container">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span>About</div>
+    <h1 class="page-title">ABOUT<br><em>CLASH BEAT</em></h1>
+    <p class="page-subtitle">CLASH：強い想いを持った者同士の全力の「ぶつかり合い」　BEAT：その姿勢や空気は多くの人の「心動かす」波長となる</p>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section class="sec">
+  <div class="container">
+    <div class="intro-grid">
+      <div>
+        <div class="label">What is CLASH BEAT</div>
+        <h2 class="h2">1on1で、<br><em>人生を変える。</em></h2>
+        <div class="body-text" style="margin-top:1.5rem;">
+          <p>CLASH BEATは女子バスケットボール日本代表の髙田真希が2023年にスタートした1on1に特化した競技エンタメプロジェクト。ただ実力のある人がレベルの高い試合をやるのではなく、様々な背景と、強い想いを持った者同士が試合を全力でぶつかる舞台。1on1で誰が最強なのかを決めるバスケットボールコンテンツです。</p>
+          <p>オーディション、ドキュメンタリー、地域予選、日本一決定戦——日本から飛び出しアジアへ——5on5、3on3だけじゃない、1on1でも食べていける世界へ</p>
+        </div>
+        <div class="tag-row">
+          <span class="tag">ストリート</span><span class="tag">オーディション</span><span class="tag">地域代表</span>
+          <span class="tag">リーグ構想</span><span class="tag">ドキュメンタリー</span><span class="tag">ライフスタイル</span><span class="tag">アジア展開</span>
+        </div>
+      </div>
+      <div>
+        <div class="intro-stat-row">
+          <div class="intro-stat"><div class="stat-num">2500<span style="font-size:1.5rem;color:var(--muted)">万</span></div><div class="stat-label">総再生数</div></div>
+          <div class="intro-stat"><div class="stat-num">19</div><div class="stat-label">開催地</div></div>
+          <div class="intro-stat"><div class="stat-num">600<span style="font-size:1.5rem;color:var(--muted)">+</span></div><div class="stat-label">総1on1試合数</div></div>
+          <div class="intro-stat"><div class="stat-num">1000<span style="font-size:1.5rem;color:var(--muted)">+</span></div><div class="stat-label">エントリー数</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RULE -->
+<section class="sec rule-sec" id="rule">
+  <div class="container">
+    <div class="rule-layout" style="grid-template-columns:1fr;">
+      <div>
+        <div class="label">Game Rules</div>
+        <h2 class="h2">2分間<br><em>3点先取。</em></h2>
+        <div class="body-text" style="margin-top:1rem;"><p>シンプルだが激しく、1度のミスが負けに繋がる緊張感とどっちが勝つか分からないワクワクが観るものを引き込む独自ルール。</p></div>
+        <div class="rule-items">
+          <div class="rule-item"><div class="rule-num">01</div><div><div class="rule-item-title">2分間・14秒ルール</div><div class="rule-item-desc">制限時間は2分。ボールを受け取り14秒以内にシュート。時間内に決着がつかない場合はサドンデスへ。</div></div></div>
+          <div class="rule-item"><div class="rule-num">02</div><div><div class="rule-item-title">3Pエリア内1点、外2点</div><div class="rule-item-desc"></div></div></div>
+          <div class="rule-item"><div class="rule-num">03</div><div><div class="rule-item-title">毎回、攻守交代</div><div class="rule-item-desc">アウトオブバウンズは攻守交代。リバウンドはなし。攻撃回数は揃える。</div></div></div>
+          <div class="rule-item"><div class="rule-num">04</div><div><div class="rule-item-title">3点先取で勝利</div><div class="rule-item-desc">制限時間に関係なく3点取ったら勝ち。もし後攻に同点か逆転の可能があれば1回だけ攻めれる。</div></div></div>
+          <div class="rule-item"><div class="rule-num">05</div><div><div class="rule-item-title">フリースローはなし、2連続ファールで相手に1点</div><div class="rule-item-desc">DFファールがあればリセットしてもう一度攻める。バスケットカウントの場合はペナルティでファール1の状態のため次のDFでファールすると相手に1点。</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORLD VIEW -->
+<section class="sec world-sec" id="world">
+  <div class="container">
+    <div class="label">Culture &amp; Vision</div>
+    <h2 class="h2">作りたい、<em>世界観。</em></h2>
+    <div class="world-grid">
+      <div class="world-card"><div class="world-card-icon">🎪</div><div class="world-card-title">Entertainment</div><div class="world-card-desc">1on1が新しい競技として、ただ見て終わるのでなく、空間作り、演出や注目度も集まるように、イベントも大会も盛り上げていく。</div></div>
+      <div class="world-card lime"><div class="world-card-icon">🔥</div><div class="world-card-title">Competition</div><div class="world-card-desc">勝利を求める姿勢や熱い想いが競争を生み、本気のぶつかり合い、レベルの高い闘いが観る人の心を動かす。</div></div>
+      <div class="world-card red"><div class="world-card-icon">🗾</div><div class="world-card-title">Local Pride</div><div class="world-card-desc">北海道から沖縄まで全国で開催される。地元の誇りを背負い、日本一の座を目指す地域代表制度。アジアに。</div></div>
+      <div class="world-card"><div class="world-card-icon">🎬</div><div class="world-card-title">Background</div><div class="world-card-desc">選手の素顔、葛藤、成長、矜持など、ただ試合だけを見せるのではなく、人間力にもフォーカスして、伝えていく。</div></div>
+      <div class="world-card lime"><div class="world-card-icon">🆕</div><div class="world-card-title">Position</div><div class="world-card-desc">1on1という競技が当たり前となり、5on5でも3on3と並んで全国各地で公式戦が開催され、いずれは1on1で生活できるプロリーグを、、、</div></div>
+      <div class="world-card red"><div class="world-card-icon">🌏</div><div class="world-card-title">Global</div><div class="world-card-desc">アジアの様々な国でCLASH BEATが開催され、大会やSNSを通じて、グローバルで盛り上がる世界へ。</div></div>
+    </div>
+    <div class="world-quote">
+      <div class="world-quote-text">「ただの大会」ではなく、<br><span>挑戦者がスターになる物語</span>を見せる。</div>
+      <div class="world-quote-attr">— CLASH BEAT Mission Statement</div>
+    </div>
+  </div>
+</section>
+
+<!-- TAKADA -->
+<section class="sec takada-sec" id="founder">
+  <div class="container">
+    <div class="label">Founder</div>
+    <div class="takada-layout">
+      <div>
+        <img src="images/takada.jpg" alt="高田真希" style="width:100%;aspect-ratio:1/1;object-fit:cover;object-position:top;">
+        <div class="takada-name-card">
+          <div class="takada-name-jp">髙田 真希</div>
+          <div class="takada-name-en">MAKI TAKADA</div>
+          <div class="takada-role">Founder / CLASH BEAT</div>
+        </div>
+      </div>
+      <div>
+        <h2 class="h2" style="margin-bottom:1.5rem;">女子バスケ<br><span class="blue">日本代表が</span><br>チェアマン。</h2>
+        <div class="body-text">
+          <p>女子バスケットボール日本代表として長年にわたりトップレベルで戦ってきた髙田真希。プロ18年目でチーム史上初のリーグチャンピオンとなりMVPを獲得した際、「成功する人は、成功するまで続けた人だと思っています」——その想いがこのCLASH BEATに込めた想いそのものを体現しております。</p>
+        </div>
+        <div class="takada-message">
+          <div class="takada-message-label">Message from Founder</div>
+          <div class="takada-message-text">コメント待ち</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<div style="padding:3rem;display:flex;gap:1rem;flex-wrap:wrap;">
+  <a href="tournament.html" style="background:var(--blue);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;display:inline-block;">大会に参加する</a>
+  <a href="videos.html" style="background:var(--lime);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.9rem 2rem;text-decoration:none;display:inline-block;">映像を見る</a>
+</div>
+
+
+  <div class="footer-logo">CLASH<span>BEAT</span></div>
+  <div class="footer-sub">日本発バスケ1on1 競技エンタメIP</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Top</a></li><li><a href="about.html">About</a></li>
+    <li><a href="tournament.html">大会</a></li><li><a href="videos.html">映像</a></li><li><a href="players.html">選手</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 CLASH BEAT. All rights reserved.</div>
+</footer>
+</body>
+</html>
