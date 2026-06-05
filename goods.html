@@ -83,7 +83,7 @@ section { padding: 5rem 3rem; }
 .filter-btn.active { background: var(--blue); border-color: var(--blue); color: var(--black); }
 
 /* ── LOOKBOOK GRID (写真・ブランドイメージ主役 / 金額なし) ── */
-.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 3rem 1.8rem; max-width: 1160px; margin: 0 auto; }
+.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem 1.8rem; max-width: 1160px; margin: 0 auto; }
 .product-card {
   display: block; text-decoration: none; color: inherit; position: relative;
   opacity: 0; transform: translateY(26px);
@@ -165,6 +165,9 @@ footer { background: var(--gray); border-top: 1px solid rgba(255,255,255,0.06); 
 .footer-links a:hover { color: var(--blue); }
 .footer-copy { font-size: 0.72rem; color: rgba(136,136,136,0.5); }
 
+@media(max-width:1024px) {
+  .product-grid { grid-template-columns: repeat(3, 1fr); }
+}
 @media(max-width:768px) {
   nav { padding: 0 1rem; }
   .nav-links { display: none; }
