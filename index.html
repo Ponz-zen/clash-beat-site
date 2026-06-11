@@ -192,6 +192,73 @@ footer { background: var(--gray); border-top: 1px solid rgba(255,255,255,0.06); 
 .news-arrow { font-family: 'Bebas Neue', sans-serif; color: var(--muted); transition: color 0.2s, transform 0.2s; }
 .news-item:hover .news-arrow { color: var(--blue); transform: translateX(4px); }
 
+/* ── OFFICIAL PARTNERS (オフィシャルパートナー) ── */
+.partners { background: var(--black); border-top: 1px solid rgba(255,255,255,0.06); }
+.partners-head { max-width: 1160px; margin: 0 auto 2.4rem; }
+
+/* 共通：ロゴ枠（画像は元サイズ問わず自動フィット。画像が無ければ "LOGO" を表示） */
+.partner-logo {
+  position: relative; width: 100%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gray2); border: 1px solid rgba(255,255,255,0.07);
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.1em;
+  color: var(--muted); overflow: hidden;
+}
+.partner-logo img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;        /* 縦横比を保ったまま枠内に自動調整 */
+  padding: 14%;               /* ロゴ周りの余白 */
+  background: var(--gray2);   /* 読み込めたら下の "LOGO" を隠す */
+  display: block;
+}
+
+/* Tier 1 ── タイトルを上、ロゴを下に */
+.partners-tier1 {
+  max-width: 1160px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: rgba(255,255,255,0.07);
+}
+.tier1-item {
+  background: var(--black); padding: 2.2rem 1.5rem;
+  display: flex; flex-direction: column; align-items: center; gap: 1.1rem;
+  transition: background 0.25s;
+}
+.tier1-item:hover { background: rgba(0,240,255,0.05); }
+.tier1-title {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--blue); text-align: center; line-height: 1.3;
+}
+.tier1-logo { height: 96px; font-size: 0.95rem; }
+
+/* Tier 区切りラベル */
+.partners-tier-label {
+  max-width: 1160px; margin: 3.2rem auto 1.3rem;
+  display: flex; align-items: center; gap: 0.9rem;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);
+}
+.partners-tier-label::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
+
+/* Tier 2 / 3 ── ロゴを上、下に Official 〇〇 Partner */
+.partners-row { max-width: 1160px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1.4rem; }
+.tier-item {
+  display: flex; flex-direction: column; align-items: center; gap: 0.7rem;
+  transition: transform 0.2s;
+}
+.tier-item:hover { transform: translateY(-3px); }
+.tier-caption {
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+  font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(242,242,242,0.65); text-align: center;
+}
+
+/* Tier 3 ＝ 小サイズ */
+.partners-tier3 .tier-item { width: calc((100% - 1.4rem * 5) / 6); }
+.partners-tier3 .partner-logo { height: 58px; font-size: 0.72rem; }
+.partners-tier3 .tier-caption { font-size: 0.64rem; }
+
 /* ── SECTION LAYERS (teaser bands → sub pages) ── */
 .layer { position: relative; overflow: hidden; padding: 0 3rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .layer:nth-of-type(even) { background: #0d0d0d; }
@@ -248,6 +315,11 @@ footer { background: var(--gray); border-top: 1px solid rgba(255,255,255,0.06); 
   .news-cat { grid-row: 1; justify-self: start; padding: 0.28rem 0.6rem; }
   .news-headline { grid-column: 1 / -1; }
   .news-arrow { display: none; }
+
+  /* パートナー：スマホでは列数を減らす */
+  .partners-tier1 { grid-template-columns: repeat(2, 1fr); }
+  .partners-tier3 .tier-item { width: calc((100% - 1.4rem * 2) / 3); }
+  .partners-tier1 .tier1-logo { height: 80px; }
 
   /* スマホ用 固定タブバー表示 */
   .mobile-tabbar {
@@ -346,6 +418,71 @@ footer { background: var(--gray); border-top: 1px solid rgba(255,255,255,0.06); 
     </div>
   </div>
   <div class="hero-scroll-hint">Scroll</div>
+</section>
+
+<!-- OFFICIAL PARTNERS / オフィシャルパートナー -->
+<section class="partners" id="partners-section">
+  <div class="partners-head">
+    <div class="section-label">Official Partners / オフィシャルパートナー</div>
+    <h2 class="section-title">オフィシャル<span style="color:var(--blue)">パートナー</span></h2>
+  </div>
+
+  <!-- ▼ Tier 1 ：タイトル（上）＋ ロゴ（下）。partners/ フォルダに同名画像を入れると自動反映 -->
+  <div class="partners-tier1">
+    <div class="tier1-item">
+      <div class="tier1-title">Official Food Partner</div>
+      <div class="partner-logo tier1-logo">LOGO<img src="partners/food.png" alt="Official Food Partner" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
+    </div>
+    <div class="tier1-item">
+      <div class="tier1-title">Official Wellness Partner</div>
+      <div class="partner-logo tier1-logo">LOGO<img src="partners/wellness.png" alt="Official Wellness Partner" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
+    </div>
+    <div class="tier1-item">
+      <div class="tier1-title">Official Sleep Partner</div>
+      <div class="partner-logo tier1-logo">LOGO<img src="partners/sleep.png" alt="Official Sleep Partner" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
+    </div>
+    <div class="tier1-item">
+      <div class="tier1-title">Official Digital Partner</div>
+      <div class="partner-logo tier1-logo">LOGO<img src="partners/digital.png" alt="Official Digital Partner" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
+    </div>
+    <div class="tier1-item">
+      <div class="tier1-title">Official Drink Partner</div>
+      <div class="partner-logo tier1-logo">LOGO<img src="partners/drink.png" alt="Official Drink Partner" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
+    </div>
+    <div class="tier1-item">
+      <div class="tier1-title">Official Social Partner</div>
+      <div class="partner-logo tier1-logo">LOGO<img src="partners/social.png" alt="Official Social Partner" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
+    </div>
+  </div>
+
+  <!-- ▼ 下段パートナー：ロゴ（上）＋ Official 〇〇 Partner（下）。partners/ に同名画像を入れると自動反映 -->
+  <div class="partners-tier-label">Partners</div>
+  <div class="partners-row partners-tier3">
+    <div class="tier-item">
+      <div class="partner-logo">LOGO<img src="partners/partner1.png" alt="Official 〇〇 Partner" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
+      <div class="tier-caption">Official 〇〇 Partner</div>
+    </div>
+    <div class="tier-item">
+      <div class="partner-logo">LOGO<img src="partners/partner2.png" alt="Official 〇〇 Partner" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
+      <div class="tier-caption">Official 〇〇 Partner</div>
+    </div>
+    <div class="tier-item">
+      <div class="partner-logo">LOGO<img src="partners/partner3.png" alt="Official 〇〇 Partner" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
+      <div class="tier-caption">Official 〇〇 Partner</div>
+    </div>
+    <div class="tier-item">
+      <div class="partner-logo">LOGO<img src="partners/partner4.png" alt="Official 〇〇 Partner" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
+      <div class="tier-caption">Official 〇〇 Partner</div>
+    </div>
+    <div class="tier-item">
+      <div class="partner-logo">LOGO<img src="partners/partner5.png" alt="Official 〇〇 Partner" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
+      <div class="tier-caption">Official 〇〇 Partner</div>
+    </div>
+    <div class="tier-item">
+      <div class="partner-logo">LOGO<img src="partners/partner6.png" alt="Official 〇〇 Partner" loading="lazy" decoding="async" onerror="this.style.display='none'"></div>
+      <div class="tier-caption">Official 〇〇 Partner</div>
+    </div>
+  </div>
 </section>
 
 <!-- NEWS / 最新のお知らせ -->
